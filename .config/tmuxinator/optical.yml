@@ -1,0 +1,7 @@
+# /home/jeff/.config/tmuxinator/rails.yml
+
+name: rails
+root: ~/Documents/keyboard/phase5/3dprinted/optical/
+
+windows:
+  - server: openscad optical_keyboard.scad &

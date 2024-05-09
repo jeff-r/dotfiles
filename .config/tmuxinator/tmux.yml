@@ -1,0 +1,7 @@
+# /home/jeff/.config/tmuxinator/tmux.yml
+
+name: tmux
+root: ~/
+
+windows:
+  - tmux: vim .tmux.conf

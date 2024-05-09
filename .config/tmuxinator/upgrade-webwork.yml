@@ -1,0 +1,8 @@
+# /home/jeff/.config/tmuxinator/upgrade-webwork.yml
+
+name: upgrade-webwork
+root: ~/projects/edfinity/webwork/upgrade-webwork/xenophon
+
+
+windows:
+  - xenophon-docker: IMAGE_VERSION=v62.1 docker-compose up

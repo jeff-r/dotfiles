@@ -1,0 +1,35 @@
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+[alias]
+  # l = log --graph --pretty=format':%C(blue)%h%Cblue%d%Creset %s %C(black) %an, %as%Creset'
+  l = log --graph --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %as%Creset'
+  # l = log --graph --pretty=format':%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset'
+  st = status
+  ci = commit
+  cim = commit -m
+  br = branch
+  co = checkout
+  df = diff
+  lg = log -p
+  sorted = for-each-ref --sort=committerdate refs/heads/ --format='%(committerdate:short) %(refname:short)' # Branches sorted by date
+[user]
+  # name = Your Name
+  # email = you@example.com
+[branch]
+  autosetupmerge = true
+[user]
+  email = jeff@edfinity.com
+  name = Jeff Roush
+[push]
+  default = simple
+
+[pull]
+	rebase = false
+[core]
+	editor = nvim
+[url "https://jeff-r"]
+	insteadOf = https://BITBUCKET_USER
+[init]
+	defaultBranch = main

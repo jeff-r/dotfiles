@@ -1,0 +1,7 @@
+# /home/jeff/.config/tmuxinator/terraform.yml
+
+name: terraform
+root: ~/projects/edfinity/webwork/terraform/terraform-xenophon
+
+windows:
+  - bash:

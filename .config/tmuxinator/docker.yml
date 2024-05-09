@@ -1,0 +1,8 @@
+# /home/jeff/.config/tmuxinator/docker.yml
+
+name: docker
+  # root: ~/projects/edfinity/socrates-development
+root: ~/projects/edfinity/socrates-new-ui
+
+windows:
+  - docker: docker compose up

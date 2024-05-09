@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+
+category = ARGV[0] || "daily"
+
+year = Time.now.strftime("%Y")
+month = Time.now.strftime("%m")
+day = Time.now.strftime("%d")
+
+root_dir = "/home/jeff/projects/edfinity/notes/obsidian"
+dir = "#{root_dir}/#{year}/#{month}"
+FileUtils.mkdir_p dir
+path = "#{dir}/#{year}-#{month}-#{day}-#{category}.md"
+
+puts FileUtils.touch "#{path}"

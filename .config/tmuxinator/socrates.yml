@@ -1,0 +1,8 @@
+# /home/jeff/.config/tmuxinator/socrates.yml
+
+name: socrates
+root: ~/projects/edfinity/socrates
+
+windows:
+  - server:
+  - console: bundle exec rails c

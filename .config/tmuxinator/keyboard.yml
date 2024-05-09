@@ -1,0 +1,7 @@
+# /home/jeff/.config/tmuxinator/rails.yml
+
+name: keyboard
+root: ~/Documents/keyboard/firmware/qmk_firmware/
+
+windows:
+  - bash:

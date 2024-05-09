@@ -1,0 +1,7 @@
+# /home/jeff/.config/tmuxinator/rails.yml
+
+name: webwork
+root: ~/projects/edfinity/webwork/xenophon
+
+windows:
+  - xenophon-docker:

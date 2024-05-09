@@ -1,0 +1,7 @@
+# /home/jeff/.config/tmuxinator/ansible-edfinity.yml
+
+name: ansible-edfinity
+root: ~/projects/edfinity/servers/ansible
+
+windows:
+  - console:

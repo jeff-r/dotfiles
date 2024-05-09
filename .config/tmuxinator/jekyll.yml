@@ -1,0 +1,8 @@
+# /home/jeff/.config/tmuxinator/rails.yml
+
+name: jekyll
+root: /home/jeff/Documents/docs/wiki/jekyll-work
+
+windows:
+  - server: bundle exec jekyll serve
+

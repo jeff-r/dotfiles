@@ -1,0 +1,9 @@
+# /home/jeff/.config/tmuxinator/rails.yml
+
+name: socrates-new-ui
+root: ~/projects/edfinity/socrates-new-ui
+
+windows:
+  # - server: forego start -f Procfile.dev
+  - server:
+  - console: bundle exec rails c
