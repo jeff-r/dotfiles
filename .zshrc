@@ -74,7 +74,7 @@ plugins=(
   git
   rails
   ruby
-  chruby
+  rbenv
   # sublime
   # sublime-merge
   bundler
@@ -154,10 +154,11 @@ alias setname='tmux rename-session `basename $PWD`'
 alias mp='multipass'
 alias cl='clear'
 alias cla='clear &&'
-alias dps='docker ps'
+alias dps="docker ps | ruby -ane 'puts \$F[1]' | tail -n +2"
 alias cm='chezmoi'
 alias vim='nvim'
 alias dc='docker compose'
+alias lez='less ~/.tmux.conf'
 
 alias om='/home/jeff/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/overmind-2.5.1/bin/overmind'
 alias oms='/home/jeff/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/overmind-2.5.1/bin/overmind start -F untracked/config/overmind-tmux.conf'
@@ -177,26 +178,6 @@ export PATH="/usr/local/heroku/bin:$PATH"
 # For running canvas in docker
 export CANVAS_SKIP_DOCKER_USERMOD=1
 
-# Set up rbenv
-export PATH="$HOME/.rbenv/bin:/home/jeff/.rbenv/shims:${PATH}"
-export RBENV_SHELL=zsh
-# source '/home/jeff/.rbenv/libexec/../completions/rbenv.zsh'
-# command rbenv rehash 2>/dev/null
-# rbenv() {
-#   local command
-#   command="${1:-}"
-#   if [ "$#" -gt 0 ]; then
-#     shift
-#   fi
-#
-#   case "$command" in
-#   rehash|shell|update|use)
-#     eval "$(rbenv "sh-$command" "$@")";;
-#   *)
-#     command rbenv "$command" "$@";;
-#   esac
-# }
-
 export TERM=tmux-256color
 
 # Stop ctrl-s from freezing the terminal
@@ -211,7 +192,14 @@ else
     print "404: ~/.zshrc.private not found."
 fi
 
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init - zsh)"
+
 EDITOR=/home/jeff/bin/rubymine
+
+# To let jmeter display in Sway
+# https://github.com/swaywm/sway/issues/595
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 rbenv global 3.2.2
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -1,7 +1,7 @@
 # /home/jeff/.config/tmuxinator/notes.yml
 
 name: notes
-root: ~/projects/edfinity/notes/obsidian/2023/
+root: ~/projects/edfinity/notes/obsidian/2024/
 
 windows:
   - vim: nvim

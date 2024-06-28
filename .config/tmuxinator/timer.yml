@@ -1,7 +1,7 @@
 # /home/jeff/.config/tmuxinator/timer.yml
 
 name: timer
-root: ~/projects/ruby/time_tracker
+root: ~/projects/ruby/timer-tailwind
 
 windows:
   - server: bundle exec rails s -p 8880

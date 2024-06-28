@@ -289,6 +289,7 @@ vim.o.hlsearch = false
 
 -- Make line numbers default
 vim.wo.number = true
+vim.wo.cursorline = true
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
@@ -419,7 +420,7 @@ vim.keymap.set('n', '<leader>vv', require('telescope.builtin').vim_options, { de
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'dockerfile', 'lua', 'perl', 'python', 'ruby', 'tsx', 'typescript', 'vimdoc',
+  ensure_installed = { 'c', 'cpp', 'go', 'dockerfile', 'lua', 'perl', 'python', 'ruby', 'tsx', 'typescript', 'terraform', 'vimdoc',
   'vim' },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)

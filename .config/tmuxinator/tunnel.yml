@@ -1,0 +1,11 @@
+# /home/jeff/.config/tmuxinator/socrates.yml
+
+name: tunnels
+root: ~/projects/edfinity/socrates
+
+windows:
+  - tunnels:
+      panes:
+        - app:    ssh -R 8888:localhost:3000 curlydog.me
+        - assets: ssh -R 8885:localhost:3035 curlydog.me
+        - canvas: ssh -R 8889:localhost:4444 curlydog.me
