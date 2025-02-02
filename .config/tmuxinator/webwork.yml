@@ -4,4 +4,4 @@ name: webwork
 root: ~/projects/edfinity/webwork/xenophon
 
 windows:
-  - xenophon-docker:
+  - xenophon-docker: IMAGE_VERSION=v63.10.1.nodb dc up

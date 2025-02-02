@@ -8,7 +8,7 @@ year = Time.now.strftime("%Y")
 month = Time.now.strftime("%m")
 day = Time.now.strftime("%d")
 
-root_dir = "/home/jeff/projects/edfinity/notes/obsidian"
+root_dir = "/home/jeff/projects/edfinity/notes/work"
 dir = "#{root_dir}/#{year}/#{month}"
 FileUtils.mkdir_p dir
 path = "#{dir}/#{year}-#{month}-#{day}-#{category}.md"

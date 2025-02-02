@@ -29,6 +29,7 @@
 	rebase = false
 [core]
 	editor = nvim
+	autocrlf = input
 [url "https://jeff-r"]
 	insteadOf = https://BITBUCKET_USER
 [init]

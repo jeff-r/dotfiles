@@ -159,16 +159,20 @@ alias cm='chezmoi'
 alias vim='nvim'
 alias dc='docker compose'
 alias lez='less ~/.tmux.conf'
+alias dbx='distrobox'
 
 alias om='/home/jeff/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/overmind-2.5.1/bin/overmind'
 alias oms='/home/jeff/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/overmind-2.5.1/bin/overmind start -F untracked/config/overmind-tmux.conf'
+
+alias initpretext='source /home/jeff/projects/edfinity/socrates-new-ui/pretext-env/bin/activate'
 
 
 # chruby ruby-2.7.6
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
-nvm use v18.8
+# nvm use v18.8
+nvm use 22.12
 
 export PATH=$PATH:~/.local/bin
 
@@ -201,5 +205,5 @@ EDITOR=/home/jeff/bin/rubymine
 # https://github.com/swaywm/sway/issues/595
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-rbenv global 3.2.2
+rbenv global 3.3.6
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
