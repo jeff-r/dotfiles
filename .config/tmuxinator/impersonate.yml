@@ -1,9 +1,0 @@
-# /home/jeff/.config/tmuxinator/ae.yml
-
-# ansible-edfinity
-
-name: ansble-edfinity
-root: /home/jeff/projects/edfinity/utils/loggerinner
-
-windows:
-  - Rails: bundle exec rails s -p 4000

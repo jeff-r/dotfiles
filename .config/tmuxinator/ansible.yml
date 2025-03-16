@@ -1,7 +1,0 @@
-# /home/jeff/.config/tmuxinator/ansible.yml
-
-name: ansible
-root: ~/projects/edfinity/servers/ansible
-
-windows:
-  - bash:

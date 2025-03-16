@@ -1,0 +1,7 @@
+# /home/jeff/.config/tmuxinator/nvim.yml
+
+name: nvim
+root: ~/.config/nvim/
+
+windows:
+  - vim: nvim

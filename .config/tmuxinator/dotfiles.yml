@@ -1,0 +1,7 @@
+# /home/jeff/.config/tmuxinator/dotfiles.yml
+
+name: dotfiles
+root: ~/dotfiles
+
+windows:
+  - bash: bash
