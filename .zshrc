@@ -148,8 +148,7 @@ export EDITOR='vim'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias bes="bundle exec spring"
-alias gpudt="git pull upstream develop --tags"
-alias gpud="git pull upstream develop"
+alias gpodt="git pull origin develop --tags"
 alias setname='tmux rename-session `basename $PWD`'
 alias mp='multipass'
 alias cl='clear'
