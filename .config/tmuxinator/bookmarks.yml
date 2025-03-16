@@ -1,0 +1,8 @@
+# /home/jeff/.config/tmuxinator/bookmarks.yml
+
+name: bookmarks
+root: ~/projects/curlydog/bookmarks
+
+windows:
+  - vim: vim index.md
+

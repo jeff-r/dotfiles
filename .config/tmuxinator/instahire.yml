@@ -1,0 +1,7 @@
+# /home/jeff/.config/tmuxinator/instahire.yml
+
+name: instahire
+root: ~/projects/edfinity/instahire/
+
+windows:
+  - zsh:
