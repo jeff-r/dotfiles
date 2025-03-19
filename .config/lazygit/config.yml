@@ -1,0 +1,9 @@
+gui:
+  tabWidth: 2
+  theme:
+    lightTheme: false
+
+git: 
+    paging:
+        colorArg: always
+        pager: delta --light --paging=never --syntax-theme base16-256 -s

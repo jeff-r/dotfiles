@@ -30,7 +30,19 @@
 [core]
 	editor = nvim
 	autocrlf = input
+  pager = delta
 [url "https://jeff-r"]
 	insteadOf = https://BITBUCKET_USER
 [init]
 	defaultBranch = main
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    light = true      # or light = true, or omit for auto-detection
+  side-by-side = true
+
+[merge]
+    conflictstyle = zdiff3
