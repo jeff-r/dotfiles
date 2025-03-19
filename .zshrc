@@ -198,6 +198,8 @@ fi
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init - zsh)"
 
+bindkey -v
+
 EDITOR=/home/jeff/bin/rubymine
 
 # To let jmeter display in Sway
