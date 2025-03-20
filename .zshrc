@@ -165,6 +165,8 @@ alias oms='/home/jeff/.rbenv/versions/3.2.2/lib/ruby/gems/3.2.0/gems/overmind-2.
 
 alias initpretext='source /home/jeff/projects/edfinity/socrates-new-ui/pretext-env/bin/activate'
 
+alias lg='lazygit'
+
 
 # chruby ruby-2.7.6
 export NVM_DIR="$HOME/.nvm"
