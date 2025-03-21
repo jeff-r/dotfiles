@@ -37,12 +37,15 @@
 	defaultBranch = main
 
 [interactive]
-    diffFilter = delta --color-only
+  diffFilter = delta --color-only
 
 [delta]
-    navigate = true  # use n and N to move between diff sections
-    light = true      # or light = true, or omit for auto-detection
+  navigate = true  # use n and N to move between diff sections
+  light = false      # or light = true, or omit for auto-detection
   side-by-side = true
+  syntax-theme = gruvbox-light
+  # syntax-theme = Drakula
 
+  # syntax-theme = zenburn
 [merge]
     conflictstyle = zdiff3

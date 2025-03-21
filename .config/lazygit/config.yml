@@ -1,10 +1,10 @@
 gui:
   tabWidth: 2
   theme:
-    lightTheme: true
+    lightTheme: false
 
 git: 
   autofetch: false
   paging:
     colorArg: always
-    pager: delta --light --paging=never --syntax-theme base16-256 -s
+    pager: delta --dark --paging=never --syntax-theme Nord -s
