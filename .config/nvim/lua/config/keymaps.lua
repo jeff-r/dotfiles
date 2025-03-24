@@ -14,12 +14,3 @@ vim.keymap.set("n", "H", "H", { desc = "Move to top of file" })
 -- Remap Shift-l to move to the bottom of the page
 vim.keymap.set("n", "L", "L", { desc = "Move to bottom of file" })
 
-local dap = require("dap")
-
-vim.keymap.set("n", "<F5>", dap.continue, { desc = "Start debugging" })
-vim.keymap.set("n", "<F10>", dap.step_over, { desc = "Step over" })
-vim.keymap.set("n", "<F11>", dap.step_into, { desc = "Step into" })
-vim.keymap.set("n", "<F12>", dap.step_out, { desc = "Step out" })
-vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint, { desc = "Toggle breakpoint" })
-vim.keymap.set("n", "<leader>dr", dap.repl.open, { desc = "Open Debug Console" })
-
