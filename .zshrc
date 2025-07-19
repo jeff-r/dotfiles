@@ -208,5 +208,8 @@ EDITOR=/home/jeff/bin/rubymine
 # https://github.com/swaywm/sway/issues/595
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+# Set screenshot directory for grimshot in Sway
+export XDG_SCREENSHOTS_DIR=~/Pictures/Screenshots
+
 rbenv global 3.3.6
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
