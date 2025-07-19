@@ -26,7 +26,7 @@ include /etc/sway/config-vars.d/*
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+# output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
 # FW13
 # output eDP-1 resolution 1920x1200 position 0,0
@@ -61,8 +61,8 @@ output eDP-3 res 2560x1600 pos 6096 300
 # Example configuration:
 #
 exec swayidle -w \
-         timeout 900 'swaylock -f -c 000000' \
-         timeout 1800 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+         timeout 3600 'swaylock -f -c 000000' \
+         timeout 8000 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
          before-sleep 'swaylock -f -c 000000'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
@@ -80,6 +80,8 @@ input "2362:628:PIXA3854:00_093A:0274_Touchpad" {
     tap enabled
     natural_scroll enabled
     middle_emulation enabled
+    accel_profile "adaptive"
+    pointer_accel 0.5
 }
 
 input "1452:613:Apple_Inc._Magic_Trackpad_2" {
@@ -87,6 +89,8 @@ input "1452:613:Apple_Inc._Magic_Trackpad_2" {
     tap enabled
     natural_scroll enabled
     middle_emulation enabled
+    accel_profile "adaptive"
+    pointer_accel 0.5
 }
 
 #
@@ -112,7 +116,11 @@ input "1452:613:Apple_Inc._Magic_Trackpad_2" {
     # Despite the name, also works for non-floating windows.
     # Change normal to inverse to use left mouse button for resizing and right
     # mouse button for dragging.
-    floating_modifier $mod normal
+    floating_modifier $mod inverse
+    # floating_modifier $mod normal
+
+    # move the focused container
+    bindsym $mod+button1 move
 
     # Reload the configuration file
     bindsym $mod+Shift+c reload
@@ -145,7 +153,7 @@ input "1452:613:Apple_Inc._Magic_Trackpad_2" {
     bindsym $mod+Shift+Right move right
 #
 # Workspaces:
-#
+
     # Switch to workspace
     bindsym $mod+1 workspace number 1
     bindsym $mod+2 workspace number 2
@@ -168,6 +176,12 @@ input "1452:613:Apple_Inc._Magic_Trackpad_2" {
     bindsym $mod+Shift+8 move container to workspace number 8
     bindsym $mod+Shift+9 move container to workspace number 9
     bindsym $mod+Shift+0 move container to workspace number 10
+
+    # https://github.com/swaywm/sway/issues/1045
+    # Was buggy? Was fixed?
+    # Dunno. Seems to work for me.
+    bindsym $mod+Tab workspace back_and_forth
+
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
 #
@@ -215,22 +229,40 @@ mode "resize" {
     # right will grow the containers width
     # up will shrink the containers height
     # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+    bindsym $left resize shrink width 20px
+    bindsym $down resize grow height 20px
+    bindsym $up resize shrink height 20px
+    bindsym $right resize grow width 20px
 
     # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+    bindsym Left resize shrink width 20px
+    bindsym Down resize grow height 20px
+    bindsym Up resize shrink height 20px
+    bindsym Right resize grow width 20px
 
     # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
+
+# Move floating windows with arrow keys
+mode "move" {
+    bindsym Up move up 20px
+    bindsym Down move down 20px
+    bindsym Left move left 20px
+    bindsym Right move right 20px
+
+    bindsym $up move up 20px
+    bindsym $down move down 20px
+    bindsym $left move left 20px
+    bindsym $right move right 20px
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+m mode "move"
 
 #
 # Status Bar:
@@ -254,7 +286,7 @@ bindsym $mod+r mode "resize"
 bar {
     status_command i3status
     tray_output primary
-    position bottom
+    position top
 
     colors {
         background #282a36
@@ -293,7 +325,8 @@ bindsym $mod+Shift+p exec grimshot save active
 bindsym $mod+f exec nautilus
 
 # Set border width for tiled windows
-default_border normal 5
+# default_border normal 1
+default_border none
 
 gaps inner 5
 gaps outer 5
@@ -308,4 +341,24 @@ default_floating_border normal 10
 bindgesture swipe:3:right workspace prev
 bindgesture swipe:3:left workspace next
 
+# capture the specified screen area to clipboard
+# bindsym Shift+Alt+Print exec grim -g "$(slurp)" - | wl-copy
+
+
 include /etc/sway/config.d/*
+
+exec gammastep
+
+# To do
+#
+# Update colors
+# Check workflow
+# Practice
+#   Move windows around
+#     Within a screen
+#     Between workspaces
+#     Between monitors
+# Gamma 
+# Set mouse speed 
+# Check yubikeys
+# 
