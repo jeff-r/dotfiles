@@ -14,7 +14,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term foot
+set $term ghostty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -199,7 +199,7 @@ input "1452:613:Apple_Inc._Magic_Trackpad_2" {
     bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
-    # bindsym $mod+f fullscreen
+    bindsym $mod+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+Shift+space floating toggle
@@ -322,7 +322,7 @@ bindsym --whole-window --to-code $mod+Button1 resize
 bindsym $mod+p       exec grimshot save area
 bindsym $mod+Shift+p exec grimshot save active
 
-bindsym $mod+f exec nautilus
+# bindsym $mod+f exec nautilus
 
 # Set border width for tiled windows
 # default_border normal 1
@@ -347,7 +347,11 @@ bindgesture swipe:3:left workspace next
 
 include /etc/sway/config.d/*
 
-exec gammastep
+# export XDG_CURRENT_DESKTOP=sway
+# export CHROME_DESKTOP=chrome
+
+exec mako
+# exec gammastep
 
 # To do
 #

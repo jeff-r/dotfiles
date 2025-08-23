@@ -213,3 +213,4 @@ export XDG_SCREENSHOTS_DIR=~/Pictures/Screenshots
 
 rbenv global 3.3.6
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+source /home/jeff/.config/op/plugins.sh
