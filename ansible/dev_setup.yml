@@ -1,0 +1,209 @@
+---
+- name: Setup Debian Trixie Dev Machine
+  hosts: localhost
+  connection: local
+  vars:
+    # Change this to your dotfiles repository URL
+    dotfiles_repo: "https://github.com/jeff-r/dotfiles.git"
+    dotfiles_dest: "{{ ansible_env.HOME }}/dotfiles"
+    user: "{{ ansible_env.USER }}"
+
+  tasks:
+    - name: Update apt cache and upgrade packages
+      become: yes
+      ansible.builtin.apt:
+        update_cache: yes
+        upgrade: dist
+      tags:
+        - system
+
+    - name: Install core development packages
+      become: yes
+      ansible.builtin.apt:
+        pkg:
+          - build-essential
+          - git
+          - git-delta
+          - curl
+          - gnupg
+          - apt-transport-https
+          - ca-certificates
+          # - software-properties-common
+          - libssl-dev
+          - zlib1g-dev
+          - libreadline-dev
+          - libyaml-dev
+          - libsqlite3-dev
+          - sqlite3
+          - libxml2-dev
+          - libxslt1-dev
+          - libcurl4-openssl-dev
+          - libffi-dev
+          - ncurses-dev
+          - tmux
+          - stow
+          - neovim
+          - zsh
+      tags:
+        - dev_tools
+
+#    - name: Install MongoDB
+#      block:
+#        - name: Import MongoDB GPG key
+#          ansible.builtin.apt_key:
+#            url: https://www.mongodb.org/static/pgp/server-6.0.asc
+#            state: present
+#          tags:
+#            - mongodb
+#
+#        - name: Add MongoDB APT repository
+#          ansible.builtin.apt_repository:
+#            repo: deb https://repo.mongodb.org/apt/debian trixie/mongodb-org/6.0 main
+#            state: present
+#          tags:
+#            - mongodb
+#
+#        - name: Install mongodb-org package
+#          ansible.builtin.apt:
+#            name: mongodb-org
+#            state: present
+#          tags:
+#            - mongodb
+#
+#        - name: Ensure MongoDB service is started and enabled
+#          ansible.builtin.service:
+#            name: mongod
+#            state: started
+#            enabled: yes
+#          tags:
+#            - mongodb
+
+    - name: Install rbenv and ruby-build
+      ansible.builtin.git:
+        repo: https://github.com/rbenv/rbenv.git
+        dest: "{{ ansible_env.HOME }}/.rbenv"
+        depth: 1
+      register: rbenv_installed
+      tags:
+        - rbenv
+
+    - name: Install ruby-build plugin
+      ansible.builtin.git:
+        repo: https://github.com/rbenv/ruby-build.git
+        dest: "{{ ansible_env.HOME }}/.rbenv/plugins/ruby-build"
+        depth: 1
+      tags:
+        - rbenv
+
+    - name: Configure rbenv in shell
+      ansible.builtin.lineinfile:
+        path: "{{ ansible_env.HOME }}/.profile"
+        line: 'export PATH="$HOME/.rbenv/bin:$PATH"'
+        create: yes
+        state: present
+      tags:
+        - rbenv
+
+    - name: Add rbenv init to shell
+      ansible.builtin.lineinfile:
+        path: "{{ ansible_env.HOME }}/.profile"
+        line: 'eval "$(rbenv init -)"'
+        create: yes
+        state: present
+      tags:
+        - rbenv
+
+    - name: Install Ruby 3.3.6
+      ansible.builtin.command:
+        cmd: "{{ ansible_env.HOME }}/.rbenv/bin/rbenv install 3.3.6"
+        creates: "{{ ansible_env.HOME }}/.rbenv/versions/3.3.6"
+      args:
+        chdir: "{{ ansible_env.HOME }}"
+      become: no
+      tags:
+        - rbenv
+        - ruby
+
+    - name: Install NVM (Node Version Manager)
+      ansible.builtin.shell:
+        cmd: |
+          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+        creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+      args:
+        chdir: "{{ ansible_env.HOME }}"
+      tags:
+        - nvm
+
+#    - name: Install Node.js v22.12
+#      ansible.builtin.shell:
+#        cmd: |
+#          . "{{ ansible_env.HOME }}/.nvm/nvm.sh" && nvm install 22.12
+#        executable: /bin/bash
+#      args:
+#        chdir: "{{ ansible_env.HOME }}"
+#      tags:
+#        - nvm
+
+    - name: Set zsh as the default shell for the user
+      become: yes
+      ansible.builtin.user:
+        name: "{{ user }}"
+        shell: /usr/bin/zsh
+      tags:
+        - zsh
+
+    - name: Install Oh My Zsh
+      ansible.builtin.shell:
+        cmd: |
+          sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+        creates: "{{ ansible_env.HOME }}/.oh-my-zsh"
+      args:
+        chdir: "{{ ansible_env.HOME }}"
+      tags:
+        - zsh
+
+
+    - name: Check if Node.js v22.12 is installed
+      ansible.builtin.shell:
+        cmd: >
+          source "{{ ansible_env.HOME }}/.nvm/nvm.sh" && nvm list | grep "v22.12."
+      args:
+        executable: /bin/bash
+      register: nvm_version_check
+      failed_when: false
+      changed_when: false
+      tags:
+        - nvm
+
+    - name: Install Node.js v22.12
+      ansible.builtin.shell:
+        cmd: >
+          source "{{ ansible_env.HOME }}/.nvm/nvm.sh" && nvm install 22.12
+      args:
+        executable: /bin/bash
+      when: nvm_version_check.rc != 0
+      tags:
+        - nvm
+
+    # - name: Checkout dotfiles repository
+    #   ansible.builtin.git:
+    #     repo: "{{ dotfiles_repo }}"
+    #     dest: "{{ dotfiles_dest }}"
+    #     clone: yes
+    #     update: yes
+    #   tags:
+    #     - dotfiles
+
+    # - name: Run stow for each dotfile directory
+    #   ansible.builtin.shell:
+    #     cmd: |
+    #       for d in *; do
+    #         if [ -d "$d" ]; then
+    #           stow -t "{{ ansible_env.HOME }}" "$d"
+    #         fi
+    #       done
+    #   args:
+    #     chdir: "{{ dotfiles_dest }}/.dotfiles"
+    #   tags:
+    #     - dotfiles
+
