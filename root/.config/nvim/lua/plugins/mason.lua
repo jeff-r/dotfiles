@@ -1,0 +1,32 @@
+return {
+}
+
+-- return {
+--   {
+--     "mason-org/mason.nvim",
+--     opts = {}
+--   },
+--   {
+--     "mason-org/mason-lspconfig.nvim",
+--     opts = {
+--       -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
+--       ensure_installed = { "lua_ls", "ruby_lsp" },
+--     },
+--     dependencies = {
+--       { "mason-org/mason.nvim", opts = {} },
+--       "neovim/nvim-lspconfig",
+--     },
+--   },
+--   {
+--     "neovim/nvim-lspconfig",
+--     config = function()
+--       local lspconfig = require("lspconfig")
+--       lspconfig.lua_ls.setup({})
+--       lspconfig.ruby_lsp.setup({})
+-- 
+--       vim.keymap.set('n', 'K',   vim.lsp.buf.hover, {})
+--       vim.keymap.set('n', 'gd',  vim.lsp.buf.definition, {})
+--       vim.keymap.set('n', '<leader>ca',  vim.lsp.buf.code_action, {})
+--     end
+--   }
+-- }
