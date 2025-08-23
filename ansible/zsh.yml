@@ -1,0 +1,26 @@
+---
+- name: Setup zsh
+  hosts: localhost
+  connection: local
+  vars:
+    user: "{{ ansible_env.USER }}"
+
+  tasks:
+    - name: Set zsh as the default shell for the user
+      become: yes
+      ansible.builtin.user:
+        name: "{{ user }}"
+        shell: /usr/bin/zsh
+      tags:
+        - zsh
+
+    - name: Install Oh My Zsh
+      ansible.builtin.shell:
+        cmd: |
+          sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+        creates: "{{ ansible_env.HOME }}/.oh-my-zsh"
+      args:
+        chdir: "{{ ansible_env.HOME }}"
+      tags:
+        - zsh
+

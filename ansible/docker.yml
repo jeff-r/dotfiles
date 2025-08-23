@@ -1,0 +1,56 @@
+---
+- name: Setup Docker engine
+  hosts: localhost
+  connection: local
+  become: yes
+  vars:
+    user: "{{ ansible_env.USER }}"
+
+  tasks:
+    - name: Create the keyrings directory
+      ansible.builtin.file:
+        path: /etc/apt/keyrings
+        state: directory
+        mode: '0755'
+      tags:
+        - docker
+    
+    - name: Download Docker's GPG key
+      ansible.builtin.get_url:
+        url: https://download.docker.com/linux/debian/gpg
+        dest: /etc/apt/keyrings/docker.asc
+        mode: '0644'
+        force: yes
+      tags:
+        - docker
+    
+    - name: Add Docker APT repository
+      ansible.builtin.apt_repository:
+        repo: "deb [arch={{ 'amd64' if ansible_architecture == 'x86_64' else ansible_architecture }} signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable"
+        state: present
+        filename: docker
+        update_cache: yes
+      tags:
+        - docker
+    
+    - name: Install Docker Engine and related packages
+      ansible.builtin.apt:
+        pkg:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+        state: present
+      tags:
+        - docker
+    
+    - name: Add current user to the docker group
+      ansible.builtin.user:
+        name: "{{ user }}"
+        groups: docker
+        append: yes
+      tags:
+        - docker
+
+

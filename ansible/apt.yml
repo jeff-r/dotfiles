@@ -1,0 +1,43 @@
+---
+- name: Install apt packages
+  hosts: localhost
+  connection: local
+  become: yes
+
+  tasks:
+    - name: Update apt cache and upgrade packages
+      ansible.builtin.apt:
+        update_cache: yes
+        upgrade: dist
+      tags:
+        - system
+
+    - name: Install core development packages
+      ansible.builtin.apt:
+        pkg:
+          - build-essential
+          - git
+          - git-delta
+          - curl
+          - gnupg
+          - apt-transport-https
+          - ca-certificates
+          - libssl-dev
+          - zlib1g-dev
+          - libreadline-dev
+          - libyaml-dev
+          - libsqlite3-dev
+          - sqlite3
+          - libxml2-dev
+          - libxslt1-dev
+          - libcurl4-openssl-dev
+          - libffi-dev
+          - ncurses-dev
+          - tmux
+          - stow
+          - neovim
+          - zsh
+          - tree
+      tags:
+        - dev_tools
+
