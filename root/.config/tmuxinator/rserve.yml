@@ -1,0 +1,7 @@
+# /home/jeff/.config/tmuxinator/rails.yml
+
+name: rserve
+root: ~/projects/edfinity/webwork/rserve
+
+windows:
+  - vim:
